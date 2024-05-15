@@ -66,6 +66,14 @@ Here's a rough outline of my plan:
 
 ## Input and Process data 录入并处理数据
 
+First, I need to explain the data structure. I store different musical phrases in melodies.txt, where each line represents a single phrase.
+
+Each note is saved as a tuple containing its information, such as (X, T), where X represents the pitch and T represents the duration.
+
+The calculation method for X uses A2 as the reference pitch, which has a value of 0. Using the equal temperament system, the value of other notes is determined by their interval from A2. For instance, A#2 has a value of 100. Additionally, a rest is represented with an empty X.
+
+The calculation method for T is note duration / quarter note duration. For example, in 2/4 time, a half note's duration is 2.
+
 首先我需要解释一下数据结构，我将不同的乐句保存在`melodies.txt`中，其中每一行表示一个单独的句子。
 
 每一个音以一个元组保存其信息，例如(X,T)，其中X表示音高，T表示时长。
@@ -74,13 +82,23 @@ X的计算方式我以A2为基准，其值为0，采用十二平均律的律制�
 
 T的计算方式为`该音时值/四分音符时值`，例如在2/4拍中，一个二分音符的时值为2。
 
-## 正则化
+## Normalization 正则化
+
+> The idea here is to stretch multiple musical phrases of varying lengths to make them the same length.
+
+Multiply T for every note in a phrase by the reciprocal of the total length of that phrase.
 
 > 这里的想法是把多个长短不一的乐句拉伸，使长度相同。
 
 将所有一个乐句内所有音的T乘以其乐句总长的倒数
 
-## 对X与T进行平均处理
+## Averaging X and T 对X与T进行平均处理
+
+- Divide the time into intervals and ensure that the pitch X is the average within each interval.
+
+- Since these musical pieces use the equal temperament system, let the reference frequency be f0=27.500. For any note a, with an interval of n semitones from the reference note, the frequency fa=f0·2^(X/1200).
+
+- Convert all X in the sequence to frequencies and generate a new sequence file named average.txt.
 
 - 将划分时间间隔，保证在每一个时刻内音高为X的平均数.
 
