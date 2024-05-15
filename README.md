@@ -1,4 +1,4 @@
-# Introduction介绍
+# Introduction 介绍
 
 This is an experimental music project with the idea of averaging several melodies.
 
@@ -36,7 +36,7 @@ Here's a rough outline of my plan:
 - 通过某种算法将这若干个旋律进行平均（或类似的处理），形成一段微分音序列。
 - 对这个微分音序列进行处理，加上一定的微分和声编配，使其听起来更加顺耳一点。
 
-# Sources of Music乐曲来源
+# Sources of Music 乐曲来源
 
 1. Brahms' "Lullaby in F Major"
 
@@ -64,6 +64,13 @@ Here's a rough outline of my plan:
 
 # Main Methods主要方法
 
-## Input and Process data录入并处理数据
+## Input and Process data 录入并处理数据
+
+首先我需要解释一下数据结构，我将不同的乐句保存在`melodies.txt`中，其中每一行表示一个单独的句子。
+
+每一个音以一个元组保存其信息，例如(X,T)，其中X表示音高，T表示时长。
+
+X的计算方式我以A2为基准，其值为0，采用十二平均律的律制计算其他音和它的音程决定其值，X为该音与A2相差的音分，例如A#2为100。
+
 
 
